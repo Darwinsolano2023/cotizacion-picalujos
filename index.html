@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cotización Comercial</title>
+<style>
+:root{--bg1:#eef1f5;--card:#fff;--text:#4a5565;--head:#1f2937;--accent:#3b5b85;--solid:#3b5b85;--soft:#f3f5f8;--line:#dde2e9;--hl-bg:#eaf0f7;--hl-bd:#5a7ca6;--hl-tx:#2f4a6b;--row:#e6edf5;--tot:#eef1f5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#14181f;--card:#1d232c;--text:#b8c0cc;--head:#eef1f5;--accent:#7fa3d1;--solid:#34527a;--soft:#252c37;--line:#333c49;--hl-bg:#222d3c;--hl-bd:#7fa3d1;--hl-tx:#b9d0ec;--row:#243040;--tot:#252c37;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#14181f;--card:#1d232c;--text:#b8c0cc;--head:#eef1f5;--accent:#7fa3d1;--solid:#34527a;--soft:#252c37;--line:#333c49;--hl-bg:#222d3c;--hl-bd:#7fa3d1;--hl-tx:#b9d0ec;--row:#243040;--tot:#252c37;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{margin:0;padding:0;box-sizing:inherit}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg1);color:var(--text);line-height:1.6;overflow-x:hidden}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.header,.section{background:var(--card);border-radius:15px;box-shadow:0 2px 10px rgba(31,41,55,.08);margin-bottom:24px}
+.header{padding:30px;text-align:center}
+.section{padding:25px}
+h1{color:var(--accent);font-size:clamp(1.5rem,5vw,2.4rem);margin-bottom:8px}
+h2{color:var(--accent);font-size:clamp(1.25rem,4vw,1.7rem);margin-bottom:15px;padding-bottom:10px;border-bottom:3px solid var(--accent)}
+h3{color:var(--accent);margin:22px 0 12px}
+.subtitle{font-size:1.05rem}
+.client-info{background:var(--soft);padding:15px;border-radius:10px;margin-top:18px}
+.client-info p{margin:4px 0}
+.client-info strong,td strong{color:var(--head)}
+p,li{margin-bottom:10px}
+.features-list{list-style:none}
+.features-list li{padding:12px;background:var(--soft);border-left:4px solid var(--accent);border-radius:5px}
+.features-list li:before{content:"✓ ";color:var(--accent);font-weight:bold;margin-right:6px}
+.pricing-table{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;min-width:300px}
+th,td{padding:12px;text-align:left;border-bottom:1px solid var(--line);font-size:.95rem}
+th{background:var(--solid);color:#fff}
+.total-row td{background:var(--tot);font-weight:bold;color:var(--accent);font-size:1.1rem}
+.hl-row td{background:var(--row)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:18px 0}
+.card{background:var(--solid);color:#fff;padding:20px;border-radius:10px;text-align:center}
+.card .amount{font-size:clamp(1.5rem,5vw,2rem);font-weight:bold;margin:8px 0}
+.card .label{opacity:.92;font-size:.95rem}
+.level{border:3px solid var(--accent)}
+.badge{display:inline-block;background:var(--accent);color:var(--card);font-weight:bold;font-size:.8rem;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.highlight{background:var(--hl-bg);border-left:4px solid var(--hl-bd);padding:15px;border-radius:5px;margin:18px 0}
+.highlight p{color:var(--hl-tx);margin:4px 0}
+.btn-container{display:flex;justify-content:center;margin:28px 0}
+.btn{background:var(--card);color:var(--accent);padding:12px 30px;border:2px solid var(--accent);border-radius:25px;font-size:1rem;font-weight:bold;cursor:pointer;transition:.3s}
+.btn:hover{background:var(--accent);color:var(--card)}
+.footer{text-align:center;padding:20px;color:var(--text)}
+@media (max-width:600px){.container{padding:10px}.section{padding:15px}.header{padding:20px 15px}th,td{padding:8px 5px}}
+@media print{body{background:#fff}.btn-container{display:none}.section{box-shadow:none;page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📄 COTIZACIÓN COMERCIAL</h1>
+  <p class="subtitle">Desarrollo de Plataforma Web E-commerce</p>
+  <div class="client-info">
+    <p><strong>Proyecto:</strong> Catálogo digital y tienda en línea</p>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+    <p><strong>Válida por:</strong> 30 días</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📋 Descripción del Proyecto</h2>
+  <p>Plataforma web tipo e-commerce con catálogo digital, diseñada para exhibir y vender productos en línea de forma simple y profesional. Los compradores pueden explorar el catálogo por categorías, buscar por nombre o referencia y consultar la ficha de cada producto con imagen, descripción, precio y disponibilidad.</p>
+  <p>Incluye integración con WhatsApp Business para cerrar consultas y ventas de forma directa, sistema de ofertas y descuentos, y un panel administrativo sencillo para gestionar el contenido sin conocimientos técnicos. La plataforma se adapta a celular, tableta y computador.</p>
+</div>
+
+<div class="section">
+  <h2>🎯 Alcance del Proyecto</h2>
+  <ul class="features-list">
+    <li>Catálogo digital con ~300 productos iniciales organizados por categorías</li>
+    <li>Buscador por nombre, marca o referencia del producto</li>
+    <li>Filtros por categoría, marca y rango de precio</li>
+    <li>Ficha de producto: imagen, descripción, precio y disponibilidad</li>
+    <li>Botón «Consultar producto» con WhatsApp Business, que envía el producto ya escrito en el mensaje</li>
+    <li>Sistema de ofertas, descuentos y sección de productos destacados</li>
+    <li>Sección de contacto con formulario</li>
+    <li>Diseño responsive, pensado principalmente para celular</li>
+    <li>Panel administrativo intuitivo para crear, editar y activar o agotar productos</li>
+    <li>Capacitación en el uso del sistema</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>🧭 Elige tu Modelo de Negocio</h2>
+  <p>Ofrecemos dos niveles para que escojas el que mejor se ajuste a tu presupuesto y a la forma en que quieres trabajar:</p>
+  <div class="grid">
+    <div class="card">
+      <div class="label">Nivel 1 · Plataforma propia</div>
+      <div class="amount">$750.000</div>
+      <div class="label">Pago inicial y final, o en cuotas</div>
+    </div>
+    <div class="card">
+      <div class="label">Nivel 2 · Servicio SaaS</div>
+      <div class="amount">$80.000/mes</div>
+      <div class="label">+ $150.000 de construcción</div>
+    </div>
+  </div>
+</div>
+
+<div class="section level">
+  <span class="badge">NIVEL 1</span>
+  <h2>💰 Plataforma Propia (compra del desarrollo)</h2>
+  <p>La plataforma es tuya. Pagas el desarrollo una sola vez y luego solo el hosting y el dominio.</p>
+  <div class="pricing-table">
+    <table>
+      <thead><tr><th>Concepto</th><th>Descripción</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Desarrollo Frontend</td><td>Diseño e interfaces de usuario</td><td>$300.000</td></tr>
+        <tr><td>Desarrollo Backend</td><td>Sistema de gestión, buscador y base de datos</td><td>$300.000</td></tr>
+        <tr><td>Panel Administrativo</td><td>Gestión de productos y ofertas</td><td>$100.000</td></tr>
+        <tr><td>Dominio propio</td><td>www.picalujos.com (1 año)</td><td>$25.000</td></tr>
+        <tr><td>Hosting Web</td><td>Mes de activación del hosting</td><td>$25.000</td></tr>
+        <tr class="total-row"><td colspan="2">TOTAL INVERSIÓN INICIAL</td><td>$750.000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Opción A: Pago inicial y final</h3>
+  <div class="grid">
+    <div class="card"><div class="label">Pago inicial (30%)</div><div class="amount">$225.000</div><div class="label">Al inicio del proyecto</div></div>
+    <div class="card"><div class="label">Pago final (70%)</div><div class="amount">$525.000</div><div class="label">Al entregar el proyecto</div></div>
+  </div>
+
+  <h3>Opción B: Pago a cuotas</h3>
+  <div class="grid">
+    <div class="card"><div class="label">Inicial</div><div class="amount">$250.000</div><div class="label">Para iniciar</div></div>
+    <div class="card"><div class="label">5 cuotas</div><div class="amount">$100.000</div><div class="label">Mensual c/u</div></div>
+  </div>
+  <p><strong>Total del proyecto:</strong> $750.000 (igual en ambas opciones)</p>
+
+  <div class="highlight">
+    <p><strong>Hosting web:</strong> $20.000/mes promedio. o $200.000 cada año</p>
+    <p>Dominio (www.marcaPropia.com) el costo promedio para mantener el dominio es de $69.000 anuales.</p>
+  </div>
+</div>
+
+<div class="section level">
+  <span class="badge">NIVEL 2 · RECOMENDADO PARA EMPEZAR</span>
+  <h2>⭐ Servicio SaaS (mensualidad)</h2>
+  <div class="grid">
+    <div class="card"><div class="label">Pago inicial</div><div class="amount">$150.000</div><div class="label">Construcción de la plataforma</div></div>
+    <div class="card"><div class="label">Mensualidad</div><div class="amount">$80.000</div><div class="label">Todo incluido</div></div>
+  </div>
+  <p><strong>Incluye mensualmente:</strong></p>
+  <ul class="features-list">
+    <li>Hosting y dominio incluidos</li>
+    <li>Mantenimiento y mejoras continuas</li>
+    <li>Soporte técnico ilimitado</li>
+    <li>Actualizaciones de seguridad</li>
+    <li>Apoyo en la carga y gestión de productos</li>
+    <li>Sin costos ocultos y sin permanencia: cancelas cuando quieras</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📊 ¿Cómo se compara nuestro SaaS?</h2>
+  <div class="pricing-table">
+    <table>
+      <thead><tr><th>Plataforma</th><th>Costo mensual</th><th>Observaciones</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Shopify</strong></td><td>~$100.000/mes</td><td>Plan básico USD $25-39, diseños predefinidos</td></tr>
+        <tr><td><strong>Komercia</strong></td><td>$125.000 - $145.000/mes</td><td>Plataforma colombiana, planes limitados</td></tr>
+        <tr><td><strong>VTEX Enterprise</strong></td><td>$2M+/mes</td><td>Orientada a grandes empresas</td></tr>
+        <tr class="hl-row"><td><strong>NUESTRA PROPUESTA</strong></td><td><strong>$80.000/mes</strong></td><td><strong>Personalizada, buscador y filtros incluidos, sin límites</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="features-list">
+    <li><strong>20% más económico</strong> que Shopify y hasta 45% menos que Komercia</li>
+    <li><strong>Hasta 75% de ahorro</strong> frente a un desarrollo tradicional ($750.000 vs $1,3M - $3M)</li>
+    <li><strong>Diseño y funciones hechos a la medida</strong> de tu negocio</li>
+    <li><strong>Soporte directo y local</strong> en español</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📅 Cronograma de Entrega</h2>
+  <p><strong>Tiempo total: 2 semanas (14 días calendario)</strong></p>
+  <ul class="features-list">
+    <li><strong>Sprint 1 (Días 1-3):</strong> Planificación, diseño y arquitectura del sistema</li>
+    <li><strong>Sprint 2 (Días 4-10):</strong> Desarrollo de catálogo, buscador y Frontend</li>
+    <li><strong>Sprint 3 (Días 11-12):</strong> Integración WhatsApp y Panel Admin</li>
+    <li><strong>Sprint 4 (Días 13-14):</strong> Pruebas, ajustes y despliegue en producción</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>🛠️ Desarrollos Adicionales</h2>
+  <p>Funcionalidades fuera del alcance inicial: <strong>$15.000/hora</strong></p>
+  <p style="font-size:.9rem">Ejemplos: control de inventario, pagos en línea, reportería avanzada, chatbot de WhatsApp, integraciones con sistemas externos. Aplica solo a mejoras dentro de la plataforma, no a desarrollos aislados.</p>
+</div>
+
+<div class="section">
+  <h2>📜 Términos y Condiciones</h2>
+  <ul style="list-style:disc;padding-left:20px">
+    <li>Esta cotización es válida por 30 días calendario</li>
+    <li>El proyecto inicia una vez confirmado el pago inicial</li>
+    <li>Incluye hasta 3 rondas de ajustes, una vez entregada la plataforma</li>
+    <li>Cambios sustanciales en el alcance pueden generar costos adicionales</li>
+    <li>El cliente debe proveer los contenidos: fotos, descripciones, referencias y precios de los productos</li>
+  </ul>
+</div>
+
+<div class="btn-container">
+  <button class="btn" onclick="enviarWhatsApp()">💬 Enviar por WhatsApp</button>
+</div>
+
+<div class="footer">
+  <p><b>Ing. Darwin Solano Álvarez</b></p>
+  <p><b>IDS Services | Ingeniería de Software y Soluciones Tecnológicas</b></p>
+  <p>darwinsolano2022@gmail.com | +57 316 642 3014</p>
+  <p>Desarrollo de Software Full Stack | Aplicaciones Web y Móviles | Automatización de Procesos | Analítica y Big Data</p>
+</div>
+</div>
+
+<script>
+document.getElementById('fecha').textContent=new Date().toLocaleDateString('es-CO',{year:'numeric',month:'long',day:'numeric'});
+function enviarWhatsApp(){
+  var m="Hola! Soy de Pica Lujos y me interesa la cotización de la plataforma web e-commerce. ¿Podemos conversar?";
+  window.open("https://wa.me/573166423014?text="+encodeURIComponent(m),"_blank");
+}
+</script>
+</body>
+</html>
